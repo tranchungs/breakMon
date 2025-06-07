@@ -1,0 +1,15 @@
+# Bắt buộc dùng LF (Unix style) cho tất cả file text (code, config,...)
+* text=auto eol=lf
+
+# Nếu có file nhị phân, đánh dấu để Git không thay đổi gì
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.tar.gz binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
