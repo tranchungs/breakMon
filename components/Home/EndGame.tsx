@@ -17,7 +17,6 @@ export function EndGame({ clickCount }: { clickCount: number }) {
     if (hash) {
       setClaimed(true);
       setIsClaiming(false);
-      window.alert("🎉 Claim successful!");
     }
   }, [isSuccess, isClaiming]);
 
