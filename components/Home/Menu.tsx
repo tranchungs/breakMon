@@ -3,7 +3,7 @@ import { useState } from "react";
 import { PlayGame } from "./Playgame";
 import { LeaderBoard } from "./LeaderBoard";
 import { useFrame } from "@/components/farcaster-provider";
-import type { MiniAppCast } from "@/types/farcaster";
+
 export function Menu() {
   const [isPlay, setPlay] = useState(false);
   const { actions } = useFrame();
