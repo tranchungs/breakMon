@@ -2,10 +2,18 @@
 import { useState } from "react";
 import { PlayGame } from "./Playgame";
 import { LeaderBoard } from "./LeaderBoard";
-
+import { useFrame } from "@/components/farcaster-provider";
+import type { MiniAppCast } from "@/types/farcaster";
 export function Menu() {
   const [isPlay, setPlay] = useState(false);
-
+  const { actions } = useFrame();
+  const openMiniApp = () => {
+    // Mở miniApp khác
+    actions?.composeCast({
+      text: "Play Game Now",
+      embeds: ["https://farcaster.xyz/miniapps/PKtA9x1hYdWf/pixel-game"],
+    });
+  };
   if (isPlay) {
     return <PlayGame></PlayGame>;
   }
@@ -18,7 +26,13 @@ export function Menu() {
       >
         Main Menu
       </h1>
-
+      <button
+        className="w-64 bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px" }}
+        onClick={() => openMiniApp()}
+      >
+        NEW GAME PIXEL BOM
+      </button>
       <button
         className="w-64 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px" }}
