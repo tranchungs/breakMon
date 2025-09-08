@@ -3,9 +3,16 @@ import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import abi from "./abi.json";
 import { PlayGame } from "./Playgame";
 import { useState, useEffect } from "react";
+import { GameBackButton } from "./GameBackButton";
 
-export function EndGame({ clickCount }: { clickCount: number }) {
-  const { context } = useFrame();
+export function EndGame({
+  clickCount,
+  onBack,
+}: {
+  clickCount: number;
+  onBack: () => void;
+}) {
+  const { context, actions } = useFrame();
   const { data: hash, writeContract } = useWriteContract();
   const [isPlayAgain, setPlayAgain] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
@@ -38,6 +45,9 @@ export function EndGame({ clickCount }: { clickCount: number }) {
   if (!isPlayAgain) {
     return (
       <div className="space-y-4 border border-[#333] rounded-md p-6 w-fit mx-auto bg-[#111] text-white">
+        <div className="absolute bottom-4 right-4 z-50">
+          <GameBackButton onBack={onBack} />
+        </div>
         <div className="text-center space-y-2">
           <p className="text-lg font-semibold">Your Score</p>
           <p
@@ -81,6 +91,6 @@ export function EndGame({ clickCount }: { clickCount: number }) {
       </div>
     );
   } else {
-    return <PlayGame />;
+    return <PlayGame onBack={onBack} />;
   }
 }

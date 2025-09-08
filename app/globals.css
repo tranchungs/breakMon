@@ -93,3 +93,20 @@ body {
   background-size: cover;
   animation: crack3 0.6s ease forwards;
 }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* độ rộng thanh cuộn */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* nền trong suốt */
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; /* màu trắng */
+  border-radius: 9999px; /* bo tròn */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa; /* hover xám nhẹ */
+}

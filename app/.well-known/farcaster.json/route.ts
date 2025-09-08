@@ -17,12 +17,12 @@ export async function GET() {
       homeUrl: `${APP_URL}`,
       imageUrl: `${APP_URL}/images/feed.png`,
       screenshotUrls: [],
-      tags: ["monad", "farcaster", "miniapp", "template"],
-      primaryCategory: "developer-tools",
+      tags: ["monad", "farcaster", "miniapp", "bonk", "game"],
       buttonTitle: "Launch Game",
       splashImageUrl: `${APP_URL}/images/splash.png`,
       splashBackgroundColor: "#ffffff",
       webhookUrl: `${APP_URL}/api/webhook`,
+      description: "Funny Store Game",
     },
   };
 

@@ -1,5 +1,6 @@
 import { useFrame } from "@/components/farcaster-provider";
 import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
+
 import { parseEther } from "viem";
 import { monadTestnet } from "viem/chains";
 import { User } from "@/components/Home/User";
@@ -51,6 +52,7 @@ export function WalletActions() {
   return (
     <div className="space-y-4 border border-[#333] rounded-md p-4">
       <h2 className="text-xl font-bold text-left">sdk.wallet.ethProvider</h2>
+
       <div className="flex flex-row space-x-4 justify-start items-start">
         <p className="text-sm text-left">Wallet connection only via Warpcast</p>
       </div>

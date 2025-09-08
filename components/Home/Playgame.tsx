@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { EndGame } from "./EndGame";
-
-export function PlayGame() {
+interface PlayGameProps {
+  onBack: () => void;
+}
+export function PlayGame({ onBack }: PlayGameProps) {
   const [clickCount, setClickCount] = useState(1);
   const [isBonking, setIsBonking] = useState(false);
   const [canClick, setCanClick] = useState(true);
@@ -45,11 +47,13 @@ export function PlayGame() {
   }, [timeLeft]);
 
   if (isGameOver) {
-    return <EndGame clickCount={clickCount} />;
+    return <EndGame clickCount={clickCount} onBack={onBack} />;
   }
 
   return (
     <div className="space-y-4 border border-[#333] rounded-md p-6 w-fit mx-auto bg-[#111]">
+      {/* Nút Exit góc trái */}
+
       <div className="w-[200px] mx-auto">
         <p className="text-white text-center text-base font-semibold">
           Tap To Break Monad
