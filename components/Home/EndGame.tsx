@@ -4,7 +4,8 @@ import abi from "./abi.json";
 import { PlayGame } from "./Playgame";
 import { useState, useEffect } from "react";
 import { GameBackButton } from "./GameBackButton";
-
+import { monadTestnet } from "wagmi/chains";
+import { useSwitchChain } from "wagmi";
 export function EndGame({
   clickCount,
   onBack,
@@ -17,7 +18,7 @@ export function EndGame({
   const [isPlayAgain, setPlayAgain] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
   const [isClaimed, setClaimed] = useState(false);
-
+  const { switchChain } = useSwitchChain();
   const { isSuccess } = useWaitForTransactionReceipt({ hash });
 
   useEffect(() => {
@@ -26,8 +27,20 @@ export function EndGame({
       setIsClaiming(false);
     }
   }, [isSuccess, isClaiming]);
+  useEffect(() => {
+    const init = async () => {
+      try {
+        await switchChain({ chainId: monadTestnet.id });
+        console.log("Switched to Monad testnet");
+      } catch (err) {
+        console.error("Switch chain failed:", err);
+      }
+    };
 
-  const Claim_Token = () => {
+    init();
+  }, []);
+  const Claim_Token = async () => {
+    await switchChain({ chainId: monadTestnet.id });
     const amount = BigInt(clickCount) * BigInt(10 ** 18);
     setIsClaiming(true);
     writeContract({
