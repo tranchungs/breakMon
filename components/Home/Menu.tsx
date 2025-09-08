@@ -140,7 +140,7 @@ export function Menu() {
         Donate
       </button>
       <h1
-        className="text-2xl text-yellow"
+        className="text-2xl text-white"
         style={{ fontFamily: "'Press Start 2P', monospace" }}
       >
         Other Game
